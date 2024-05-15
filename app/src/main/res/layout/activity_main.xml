@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/advancedSettingsButton"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="navAdvancedSettings"
+        android:text="@string/advanced_settings_button"
+        app:layout_constraintBottom_toTopOf="@+id/exportButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/importFileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="fileSelect"
+        android:text="@string/local_file_prompt"
+        app:icon="@drawable/attach_file"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle" />
+
+    <Button
+        android:id="@+id/exportButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/export"
+        app:icon="@drawable/arrow_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mediaFormatSelect"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/select_media_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importFileButton">
+
+        <AutoCompleteTextView
+            android:id="@+id/mediaFormatSelectContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/select_media_type"
+            android:inputType="none"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:simpleItems="@array/media_types" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <SeekBar
+        android:id="@+id/crfSeekBar"
+        style="@style/Widget.AppCompat.SeekBar"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:max="51"
+        android:progress="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crfLabel" />
+
+    <TextView
+        android:id="@+id/crfLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/crf_label"
+        app:layout_constraintStart_toStartOf="@+id/crfSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/mediaFormatSelect" />
+
+    <ImageButton
+        android:id="@+id/crfInfoButton"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="-8dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/info"
+        app:layout_constraintBottom_toBottomOf="@+id/crfLabel"
+        app:layout_constraintStart_toEndOf="@+id/crfLabel"
+        app:layout_constraintTop_toTopOf="@+id/crfLabel"
+        app:srcCompat="@drawable/question_mark" />
+
+    <TextView
+        android:id="@+id/crfValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/crfLabel"
+        app:layout_constraintEnd_toEndOf="@+id/crfSeekBar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/widthEntry"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/width"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.513">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/widthEntryContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="8"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/heightEntry"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/height"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.513">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/heightEntryContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="8"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crfSeekBar"
+        app:srcCompat="@drawable/outline_cross_small"
+        android:contentDescription="@string/by"
+        app:tint="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/selectedFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/no_file_selected"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@+id/importFileButton"
+        app:layout_constraintStart_toStartOf="@+id/importFileButton"
+        app:layout_constraintTop_toBottomOf="@+id/importFileButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

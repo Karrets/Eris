@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array tools:ignore="Typos" name="media_types">
+        <item>MP4-h264</item>
+        <item>MP4-h265</item>
+        <item>WEBM-vp8</item>
+        <item>WEBM-vp9</item>
+    </string-array>
+</resources>
