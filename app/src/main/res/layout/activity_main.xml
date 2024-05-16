@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:onClick="navAdvancedSettings"
         android:text="@string/advanced_settings_button"
         app:layout_constraintBottom_toTopOf="@+id/exportButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:onClick="fileSelect"
         android:text="@string/local_file_prompt"
         app:icon="@drawable/attach_file"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +48,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/export"
         app:icon="@drawable/arrow_forward"
+        app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -83,8 +82,9 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:max="51"
-        android:progress="20"
+        android:enabled="false"
+        android:max="0"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
 
     <ImageButton
         android:id="@+id/crfInfoButton"
-        style="@android:style/Widget.Material.ImageButton"
+        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="-8dp"
@@ -110,7 +110,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/crfLabel"
         app:layout_constraintStart_toEndOf="@+id/crfLabel"
         app:layout_constraintTop_toTopOf="@+id/crfLabel"
-        app:srcCompat="@drawable/question_mark" />
+        app:srcCompat="@drawable/info"
+        app:tint="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/crfValue"
@@ -162,11 +163,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:contentDescription="@string/by"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crfSeekBar"
         app:srcCompat="@drawable/outline_cross_small"
-        android:contentDescription="@string/by"
         app:tint="?attr/colorPrimary" />
 
     <TextView

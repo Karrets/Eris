@@ -2,30 +2,46 @@ package space.kodirex.eris.converter
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.FFmpegKitConfig
+import com.arthenica.ffmpegkit.FFmpegSession
+import com.arthenica.ffmpegkit.FFmpegSessionCompleteCallback
 import com.arthenica.ffmpegkit.FFprobeKit
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import com.arthenica.ffmpegkit.LogCallback
+import com.arthenica.ffmpegkit.StatisticsCallback
 
 class FfmpegHelper(private val context: Context) {
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-
-    fun convert(input: Uri, output: Uri, options: ConversionOptions) {
-        options.explodeMIME()
-
-        FFmpegKit.executeAsync(
-            "-i ${uriTofilePath(input)} -crf ${options.crf} -preset slow -vf scale=${options.width}:${options.height} -c:v ${options.codecFFMPEG} -f ${options.container} ${uriTofilePath(output, "w")}",
-            { Log.i("ffmpegKIT-COMPL", "Finished...")},
-            { Log.i("ffmpegKIT-${it.level.name}", it.message)},
-            { Log.i("ffmpegKIT-STATS", it.toString())},
-            executorService
+    fun convert(
+        command: String,
+        completeCallback: FFmpegSessionCompleteCallback,
+        logCallback: LogCallback,
+        statisticsCallback: StatisticsCallback
+    ): FFmpegSession {
+        return FFmpegKit.executeAsync(
+            command,
+            completeCallback,
+            logCallback,
+            statisticsCallback
         )
     }
 
+    fun compile(input: Uri, output: Uri, options: ConversionOptions): String {
+        options.explodeMIME()
+
+        return "-i ${uriTofilePath(input)} -crf ${options.crf} -preset slow -vf scale=${options.width}:${options.height} -c:v ${options.codecFFMPEG} -f ${options.container} ${
+            uriTofilePath(
+                output,
+                "w"
+            )
+        }"
+    }
+
     fun getSourceResolution(uri: Uri): Pair<String, String> {
-        val result = FFprobeKit.execute("-v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 ${uriTofilePath(uri)}")
+        val result = FFprobeKit.execute(
+            "-v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 ${
+                uriTofilePath(uri)
+            }"
+        )
         val width = result.output.split("x")[0].trim()
         val height = result.output.split("x")[1].trim()
 
@@ -52,7 +68,7 @@ class ConversionOptions(
         container = mediaType.split('-')[0]
         codec = mediaType.split('-')[1]
 
-        codecFFMPEG = when(codec) {
+        codecFFMPEG = when (codec) {
             "h265" -> "hevc"
             else -> codec //If not in here, source codec name is ok!
         }

@@ -11,10 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Eris"
-        tools:targetApi="31">
+        android:theme="@style/Eris">
         <activity
-            android:name=".Progress"
+            android:name=".ProgressActivity"
             android:exported="false" />
         <activity
             android:name=".AdvancedSettings"
